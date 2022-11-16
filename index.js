@@ -8,6 +8,7 @@ const app = express();
 const PORT = 8080;
 
 app.use(cors());
+app.use(express.json({ type: "application/json" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 

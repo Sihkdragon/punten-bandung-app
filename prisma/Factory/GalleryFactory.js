@@ -4,7 +4,7 @@ const { faker } = require("@faker-js/faker/locale/id_ID");
 const prisma = new PrismaClient();
 
 async function createGallery() {
-  for (let i; i <= 10; i++)
+  for (let i = 1; i <= 10; i++) {
     await prisma.gallery.upsert({
       where: { id: i },
       update: {},
@@ -13,6 +13,7 @@ async function createGallery() {
         image_url: faker.image.imageUrl(),
       },
     });
+  }
 }
 
 module.exports = createGallery;

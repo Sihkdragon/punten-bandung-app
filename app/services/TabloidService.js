@@ -42,7 +42,39 @@ const getAllTabloid = async () => {
 const PostTabloid = async (data) => {
   try {
     await prisma.posts.create({
+      data: {
+        ...data,
+        tags: {
+          create: {
+            tag1: "tag1",
+            tag2: "tag2",
+            tag3: "tag3",
+            tag4: "tag4",
+            tag5: "tag5",
+          },
+        },
+      },
+    });
+  } catch (e) {
+    throw e;
+  }
+};
+
+const EditTabloid = async (id, data) => {
+  try {
+    await prisma.posts.update({
+      where: { id },
       data,
+    });
+  } catch (e) {
+    throw e;
+  }
+};
+
+const DeleteTabloid = async (id) => {
+  try {
+    await prisma.posts.delete({
+      where: { id },
     });
   } catch (e) {
     throw e;
@@ -53,4 +85,6 @@ module.exports = {
   getTabloid,
   getAllTabloid,
   PostTabloid,
+  EditTabloid,
+  DeleteTabloid,
 };
