@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum user_role {
+  admin
+  contributors
+}
+
+model Posts {
+  id            Int         @id @default(autoincrement())
+  title         String      @db.VarChar(255)
+  writer        String      @db.VarChar(255)
+  editor        String      @db.VarChar(255)
+  author        Users       @relation(fields: [author_id], references: [id])
+  author_id     Int
+  comments      Comments[]
+  tags          Posts_Tags?
+  body          String      @db.Text
+  thumbnail_url String      @db.VarChar(255)
+  created_at    DateTime    @default(now())
+  update_at     DateTime    @updatedAt
+}
+
+model Posts_Tags {
+  id      Int    @id @default(autoincrement())
+  post    Posts  @relation(fields: [post_id], references: [id])
+  post_id Int    @unique
+  tag1    String @db.VarChar()
+  tag2    String @db.VarChar()
+  tag3    String @db.VarChar()
+  tag4    String @db.VarChar()
+  tag5    String @db.VarChar()
+}
+
+model Users {
+  id         Int       @id @default(autoincrement())
+  email      String
+  username   String    @unique
+  name       String    @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  role       user_role @default(admin)
+  posts      Posts[]
+  created_at DateTime  @default(now())
+  update_at  DateTime  @updatedAt
+}
+
+model Comments {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  email      String   @db.VarChar(255)
+  comment    String   @db.Text
+  post       Posts    @relation(fields: [post_id], references: [id])
+  post_id    Int
+  created_at DateTime @default(now())
+}
+
+model Gallery {
+  id         Int      @id @default(autoincrement())
+  author     String   @db.VarChar(255)
+  image_url  String   @db.VarChar(255)
+  created_at DateTime @default(now())
+  update_at  DateTime @updatedAt
+}

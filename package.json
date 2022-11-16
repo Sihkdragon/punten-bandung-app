@@ -2,19 +2,30 @@
   "name": "be-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon index.js",
+    "migrate": "npx prisma migrate dev --name init",
+    "seed": "node prisma/Seeder/index.js",
+    "migrate-rollback": "npx prisma migrate reset -f",
+    "seed-refresh": "npx prisma migrate reset -f && node prisma/Seeder/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.6.1",
+    "argon2": "^0.30.2",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "prisma": "^4.6.1"
   }
 }
