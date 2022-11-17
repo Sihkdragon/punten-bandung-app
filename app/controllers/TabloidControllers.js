@@ -1,4 +1,5 @@
-const API_RESPONSE = require("../resources/APIResponse");
+const ParseBody = require("../helpers/Parser/tabloidParser");
+const { API_RESPONSE } = require("../resources/APIResponse");
 const {
   getAllTabloid,
   getTabloid,
@@ -23,14 +24,12 @@ class Tabloid {
   }
 
   static async store(req, res) {
-    const { title } = req.body;
-    const Input = {
-      ...req.body,
-      thumbnail_url: `${req.protocol}://${req.get("Host")}/assets/img/${req.body.image}`,
-    };
-    delete Input.image;
-    // await PostTabloid(Input);
-    return API_RESPONSE(res, 201, req.body, "Success Store Tabloid");
+    return API_RESPONSE(
+      res,
+      201,
+      await PostTabloid(ParseBody(req.body, req)),
+      "Success Store Tabloid"
+    );
   }
 
   static async update(req, res) {

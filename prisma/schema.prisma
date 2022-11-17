@@ -31,14 +31,14 @@ model Posts {
 }
 
 model Posts_Tags {
-  id      Int    @id @default(autoincrement())
-  post    Posts  @relation(fields: [post_id], references: [id])
-  post_id Int    @unique
-  tag1    String @db.VarChar()
-  tag2    String @db.VarChar()
-  tag3    String @db.VarChar()
-  tag4    String @db.VarChar()
-  tag5    String @db.VarChar()
+  id      Int     @id @default(autoincrement())
+  post    Posts   @relation(fields: [post_id], references: [id])
+  post_id Int     @unique
+  tag1    String? @db.VarChar()
+  tag2    String? @db.VarChar()
+  tag3    String? @db.VarChar()
+  tag4    String? @db.VarChar()
+  tag5    String? @db.VarChar()
 }
 
 model Users {

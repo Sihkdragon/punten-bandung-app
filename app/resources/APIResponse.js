@@ -10,4 +10,12 @@ function API_RESPONSE(res, statuscode, data, message = undefined) {
   });
 }
 
-module.exports = API_RESPONSE;
+function BASE_API_RESPONSE(statusCode, message, payload = undefined) {
+  return {
+    statusCode,
+    payload,
+    message,
+  };
+}
+
+module.exports = { API_RESPONSE, BASE_API_RESPONSE };

@@ -1,9 +1,23 @@
 const { Router } = require("express");
 const TabloidRouter = require("./TabloidRouter");
 const GalleryRouter = require("./GalleryRouter");
+const API_urls = require("../app/resources/urls");
+const AuthRouter = require("./AuthRouter");
 const router = Router();
 
-router.use("/api", TabloidRouter);
-router.use("/api", GalleryRouter);
+// ================================================
+// |           Autehentication URL                |
+// ================================================
+router.use(API_urls.auth.url, AuthRouter);
+
+// ================================================
+// |                Tabloid URL                   |
+// ================================================
+router.use(API_urls.tabloid.url, TabloidRouter);
+
+// ================================================
+// |                Gallery URL                   |
+// ================================================
+router.use(API_urls.gallery.url, GalleryRouter);
 
 module.exports = router;

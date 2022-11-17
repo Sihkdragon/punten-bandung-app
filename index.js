@@ -3,19 +3,16 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const router = require("./routes");
 const path = require("path");
+const dotenv = require("dotenv");
 
 const app = express();
-const PORT = 8080;
 
+dotenv.config();
 app.use(cors());
-app.use(express.json({ type: "application/json" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(router);
+app.use(express.json({ type: "application/json" }));
+app.use("/api", router);
 
-app.listen(PORT, (e) => {
-  if (e) throw e;
-
-  console.log("Listening on Port: " + PORT);
-});
+module.exports = app;

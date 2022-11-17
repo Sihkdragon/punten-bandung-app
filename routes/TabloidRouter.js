@@ -1,13 +1,15 @@
 const { Router } = require("express");
 const API_urls = require("../app/resources/urls");
 const Tabloid = require("../app/controllers/TabloidControllers");
+const upload = require("../app/helpers/Parser/fileParser");
 
 const TabloidRouter = Router();
 
-TabloidRouter.get(API_urls.tabloid.url, Tabloid.index);
-TabloidRouter.get(API_urls.tabloid.url_withID, Tabloid.index);
-TabloidRouter.post(API_urls.tabloid.url, Tabloid.store);
-TabloidRouter.patch(API_urls.tabloid.url_withID, Tabloid.update);
-TabloidRouter.delete(API_urls.tabloid.url_withID, Tabloid.delete);
+TabloidRouter.get("/", Tabloid.index);
+TabloidRouter.get("/:id", Tabloid.index);
+TabloidRouter.post("/", upload("tabloid").single("image"), Tabloid.store);
+// TabloidRouter.post('/, Tabloid.store);
+TabloidRouter.patch("/:id", Tabloid.update);
+TabloidRouter.delete("/:id", Tabloid.delete);
 
 module.exports = TabloidRouter;

@@ -13,7 +13,7 @@ const getGallery = async () => {
 
 const PostImage = async (data) => {
   try {
-    prisma.gallery.create({
+    await prisma.gallery.create({
       data,
     });
   } catch (e) {

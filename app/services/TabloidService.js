@@ -6,6 +6,33 @@ const getTabloid = async (TabloidID) => {
   try {
     const res = await prisma.posts.findFirst({
       where: { id: TabloidID },
+      select: {
+        _count: true,
+        id: true,
+        title: true,
+        writer: true,
+        editor: true,
+        body: true,
+        thumbnail_url: true,
+        tags: {
+          select: {
+            tag1: true,
+            tag2: true,
+            tag3: true,
+            tag4: true,
+            tag5: true,
+          },
+        },
+        author: {
+          select: {
+            name: true,
+            role: true,
+          },
+        },
+        comments: true,
+        created_at: true,
+        update_at: true,
+      },
     });
 
     return res;
@@ -41,19 +68,8 @@ const getAllTabloid = async () => {
 
 const PostTabloid = async (data) => {
   try {
-    await prisma.posts.create({
-      data: {
-        ...data,
-        tags: {
-          create: {
-            tag1: "tag1",
-            tag2: "tag2",
-            tag3: "tag3",
-            tag4: "tag4",
-            tag5: "tag5",
-          },
-        },
-      },
+    return await prisma.posts.create({
+      data,
     });
   } catch (e) {
     throw e;

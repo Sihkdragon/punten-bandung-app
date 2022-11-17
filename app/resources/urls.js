@@ -17,6 +17,12 @@ const API_urls = {
       return this.url + "/:id";
     },
   },
+  auth: {
+    url: "/auth",
+    get url_withID() {
+      return this.url + "/:id";
+    },
+  },
 };
 
 module.exports = API_urls;
