@@ -3,6 +3,8 @@ const TabloidRouter = require("./TabloidRouter");
 const GalleryRouter = require("./GalleryRouter");
 const API_urls = require("../app/resources/urls");
 const AuthRouter = require("./AuthRouter");
+const CommentRouter = require("./CommentRouter");
+const UserRouter = require("./UserRouter");
 const router = Router();
 
 // ================================================
@@ -19,5 +21,15 @@ router.use(API_urls.tabloid.url, TabloidRouter);
 // |                Gallery URL                   |
 // ================================================
 router.use(API_urls.gallery.url, GalleryRouter);
+
+// ================================================
+// |                Comments URL                  |
+// ================================================
+router.use(API_urls.comment.url, CommentRouter);
+
+// ================================================
+// |                Users URL                     |
+// ================================================
+router.use(API_urls.users.url, UserRouter);
 
 module.exports = router;

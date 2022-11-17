@@ -18,3 +18,5 @@ benchmarks/graphs
 # https://git-scm.com/docs/gitignore
 
 prisma/migrations
+
+public/assets/img/post/*

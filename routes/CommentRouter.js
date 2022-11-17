@@ -1,13 +1,20 @@
 const { Router } = require("express");
-const Gallery = require("../app/controllers/GalleryControllers");
-const upload = require("../app/helpers/Parser/fileParser");
+const Comment = require("../app/controllers/CommentControllers");
+const { API_RESPONSE } = require("../app/resources/APIResponse");
 
 const CommentRouter = Router();
 
-CommentRouter.get("/", Gallery.index);
-CommentRouter.get("/:id", Gallery.index);
-CommentRouter.post("/", upload("gallery").single("image"), Gallery.store);
-CommentRouter.patch("/:id", Gallery.update);
-CommentRouter.delete("/:id", Gallery.delete);
+CommentRouter.get("/:postID", Comment.index);
+CommentRouter.get("/:postID/:id", Comment.index);
+CommentRouter.post("/:postID", Comment.store);
+CommentRouter.delete("/:id", Comment.delete);
+
+/**
+ * @NotFoundCommentRoutes
+ */
+
+CommentRouter.all("*", (req, res) => {
+  return API_RESPONSE(res, 404, undefined);
+});
 
 module.exports = CommentRouter;

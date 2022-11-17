@@ -23,6 +23,12 @@ const API_urls = {
       return this.url + "/:id";
     },
   },
+  users: {
+    url: "/users",
+    get url_withID() {
+      return this.url + "/:id";
+    },
+  },
 };
 
 module.exports = API_urls;
