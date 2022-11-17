@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-const { VerifyPassword } = require("../helpers/Hash/hashHelpers");
+const { VerifyPassword, HashPassword } = require("../helpers/Hash/hashHelpers");
 const { Init_JWT } = require("../helpers/JWT/jwtHelpers");
 const { BASE_API_RESPONSE } = require("../resources/APIResponse");
 
@@ -31,6 +31,20 @@ const Login = async (username, password) => {
   }
 };
 
+const Register = async (data) => {
+  data.password = await HashPassword(data.password);
+  try {
+    const User = await prisma.users.create({
+      data,
+    });
+
+    delete User.password;
+    return BASE_API_RESPONSE(200, "Register Success", User);
+  } catch (e) {
+    throw e;
+  }
+};
 module.exports = {
   Login,
+  Register,
 };

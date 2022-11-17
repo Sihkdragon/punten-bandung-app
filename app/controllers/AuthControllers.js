@@ -1,5 +1,5 @@
 const { API_RESPONSE } = require("../resources/APIResponse");
-const { Login } = require("../services/AuthService");
+const { Login, Register } = require("../services/AuthService");
 
 class Auth {
   static async login(req, res) {
@@ -9,7 +9,12 @@ class Auth {
 
     return API_RESPONSE(res, statusCode, payload, message);
   }
-  static async register() {}
+  static async register(req, res) {
+    const { statusCode, payload, message } = await Register(req.body);
+
+    return API_RESPONSE(res, statusCode, payload, message);
+    // return API_RESPONSE(res, 200, req.body);
+  }
 }
 
 module.exports = Auth;
