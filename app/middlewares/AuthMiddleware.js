@@ -47,6 +47,7 @@ class AuthorizeAs {
   }
   static contributors(req, res, next) {
     const role = req.UserRole;
+
     if (role !== "contributors" && role !== "admin") {
       return API_RESPONSE(res, 403, undefined, "Access Unallowed");
     }

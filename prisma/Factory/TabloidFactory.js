@@ -16,8 +16,7 @@ async function createTabloid() {
         editor: faker.name.fullName(),
         thumbnail_url: faker.image.imageUrl(900, 500, "bandung"),
         body: Seedparagraph(),
-        author_id: 1,
-        access_slug: getPostUrl(title),
+        redacture_id: 1,
       },
     });
   }

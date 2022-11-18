@@ -13,4 +13,4 @@ function getPostUrl(title) {
   return new Date().toLocaleDateString() + "/" + title.toLowerCase().split(" ").join("-");
 }
 
-console.log(getPostUrl(Title_data));
+// console.log(getPostUrl(Title_data));

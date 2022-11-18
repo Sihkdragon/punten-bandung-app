@@ -23,7 +23,7 @@ const getTabloid = async (TabloidID) => {
             tag5: true,
           },
         },
-        author: {
+        redacture: {
           select: {
             name: true,
             role: true,
@@ -41,13 +41,18 @@ const getTabloid = async (TabloidID) => {
   }
 };
 
+/**
+ *
+ * @returns Latest Tabloids
+ */
+
 const getAllTabloid = async () => {
   try {
     const res = await prisma.posts.findMany({
       select: {
         id: true,
         title: true,
-        author: {
+        redacture: {
           select: {
             name: true,
             role: true,
@@ -57,8 +62,12 @@ const getAllTabloid = async () => {
         thumbnail_url: true,
         writer: true,
         tags: true,
+        body: true,
         created_at: true,
         update_at: true,
+      },
+      orderBy: {
+        update_at: "desc",
       },
     });
     return res;

@@ -1,11 +1,14 @@
-const { getAll } = require("./BASESERVICE");
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
 const getGallery = async () => {
   try {
-    return await getAll("gallery");
+    return await prisma.gallery.findMany({
+      orderBy: {
+        update_at: "desc",
+      },
+    });
   } catch (e) {
     throw e;
   }
