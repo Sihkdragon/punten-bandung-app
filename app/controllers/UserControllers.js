@@ -4,6 +4,7 @@ const UserService = require("../services/UserService");
 class User {
   static async index(req, res) {
     const { id } = req.params;
+    console.log(req.role);
     if (!id) {
       return API_RESPONSE(res, 200, await UserService.getAllUser(), "Get All User Success");
     }

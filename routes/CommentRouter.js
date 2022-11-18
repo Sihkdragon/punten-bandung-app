@@ -1,20 +1,32 @@
 const { Router } = require("express");
 const Comment = require("../app/controllers/CommentControllers");
-const { API_RESPONSE } = require("../app/resources/APIResponse");
+const { isAuthenticated, AuthorizeAs } = require("../app/middlewares/AuthMiddleware");
 
 const CommentRouter = Router();
+
+/**
+ * ====================================================================
+ * * Public URL
+ * ====================================================================
+ */
 
 CommentRouter.get("/:postID", Comment.index);
 CommentRouter.get("/:postID/:id", Comment.index);
 CommentRouter.post("/:postID", Comment.store);
-CommentRouter.delete("/:id", Comment.delete);
 
 /**
- * @NotFoundCommentRoutes
+ * @Authenticate
  */
 
-CommentRouter.all("*", (req, res) => {
-  return API_RESPONSE(res, 404, undefined);
-});
+CommentRouter.use(isAuthenticated, AuthorizeAs["admin"]);
+
+/**
+ * ====================================================================
+ * * Private URL
+ * ? Minimum Role admin
+ * ====================================================================
+ */
+
+CommentRouter.delete("/:id", Comment.delete);
 
 module.exports = CommentRouter;
