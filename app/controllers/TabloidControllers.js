@@ -23,6 +23,11 @@ class Tabloid {
     return API_RESPONSE(res, 200, await getAllTabloid(), "success get Tabloids");
   }
 
+  static async show(req, res) {
+    const { tabloidslug } = req.params;
+    return API_RESPONSE(res, 200, tabloidslug, "success get Tabloids");
+  }
+
   static async store(req, res) {
     return API_RESPONSE(
       res,

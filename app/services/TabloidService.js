@@ -58,6 +58,7 @@ const getAllTabloid = async () => {
         writer: true,
         tags: true,
         created_at: true,
+        update_at: true,
       },
     });
     return res;

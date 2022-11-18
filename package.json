@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
+    "dev-test": "nodemon __test__/test.js",
     "migrate": "npx prisma migrate dev --name init",
     "seed": "node prisma/Seeder/index.js",
     "migrate-rollback": "npx prisma migrate reset -f",

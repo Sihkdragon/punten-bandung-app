@@ -20,6 +20,7 @@ model Posts {
   title         String      @db.VarChar(255)
   writer        String      @db.VarChar(255)
   editor        String      @db.VarChar(255)
+  access_slug   String?     @db.VarChar(255)
   author        Users       @relation(fields: [author_id], references: [id])
   author_id     Int
   comments      Comments[]

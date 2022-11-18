@@ -13,13 +13,14 @@ const TabloidRouter = Router();
  */
 
 TabloidRouter.get("/", Tabloid.index);
-TabloidRouter.get("/:id", Tabloid.index);
+// TabloidRouter.get("/:id", Tabloid.index);
+TabloidRouter.get("/:tabloidslug", Tabloid.show);
 
 /**
  * @Authenticate
  */
 
-TabloidRouter.use(isAuthenticated, AuthorizeAs["contributors"]);
+// TabloidRouter.use(isAuthenticated, AuthorizeAs["contributors"]);
 
 /**
  * ====================================================================
