@@ -1,11 +1,10 @@
 const { Router } = require("express");
-const Auth = require("../app/controllers/AuthControllers");
 const User = require("../app/controllers/UserControllers");
+const { isAuthenticated } = require("../app/middlewares/AuthMiddleware");
+
 const UserRouter = Router();
 
-UserRouter.post("/login", Auth.login);
-UserRouter.post("/register", Auth.register);
-
+UserRouter.use(isAuthenticated);
 UserRouter.get("/", User.index);
 UserRouter.get("/:id", User.index);
 UserRouter.post("/", User.store);
