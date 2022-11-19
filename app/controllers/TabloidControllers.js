@@ -35,6 +35,7 @@ class Tabloid {
       await PostTabloid(ParseBody(req.body, req)),
       "Success Store Tabloid"
     );
+    // return API_RESPONSE(res, 201, req.body, "Success Store Tabloid");
   }
 
   static async update(req, res) {
