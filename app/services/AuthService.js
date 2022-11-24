@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 const { VerifyPassword, HashPassword } = require("../helpers/Hash/hashHelpers");
 const { Init_JWT } = require("../helpers/JWT/jwtHelpers");
 const { BASE_API_RESPONSE } = require("../resources/APIResponse");
@@ -41,7 +41,13 @@ const Register = async (data) => {
     delete User.password;
     return BASE_API_RESPONSE(200, "Register Success", User);
   } catch (e) {
-    throw e;
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      // The .code property can be accessed in a type-safe manner
+      if (e.code === "P2002") {
+        return BASE_API_RESPONSE(400, "Username sudah digunakan");
+      }
+    }
+    // throw e;
   }
 };
 module.exports = {
