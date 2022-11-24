@@ -9,7 +9,11 @@ class Gallery {
     const finalImageURL =
       req.protocol + "://" + req.get("host") + "/assets/img/gallery/" + req.file.filename;
 
-    await PostImage({ author: req.body.author, image_url: finalImageURL });
+    await PostImage({
+      author: req.body.author,
+      location: req.body.location,
+      image_url: finalImageURL,
+    });
     return API_RESPONSE(res, 201, undefined, "Success Save Image");
   }
   static async update(req, res) {

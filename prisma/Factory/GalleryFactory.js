@@ -11,6 +11,7 @@ async function createGallery() {
       create: {
         author: faker.name.fullName(),
         image_url: faker.image.imageUrl(),
+        location: faker.address.county() + ", " + faker.address.city(),
       },
     });
   }
