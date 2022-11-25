@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const getGallery = async () => {
   try {
     return await prisma.gallery.findMany({
+      take: 16,
       orderBy: {
         update_at: "desc",
       },
