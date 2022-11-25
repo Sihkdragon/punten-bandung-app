@@ -28,9 +28,9 @@ describe("Functional Test", () => {
     done();
   });
 
-  it("Object Structured Should Have Key", (done) => {
-    expect(APIResponse.payload).toHaveProperty("username");
+  // it("Object Structured Should Have Key", (done) => {
+  //   expect(APIResponse.payload).toHaveProperty("username");
 
-    done();
-  });
+  //   done();
+  // });
 });
