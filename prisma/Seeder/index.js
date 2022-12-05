@@ -4,6 +4,7 @@ const createTabloid = require("../Factory/TabloidFactory");
 const createGallery = require("../Factory/GalleryFactory");
 const createTags = require("../Factory/PostTagFactory");
 const createComments = require("../Factory/CommentFactory");
+const createFavPlace = require("../Factory/FavPlaceFactory");
 
 const prisma = new PrismaClient();
 
@@ -13,6 +14,7 @@ async function main() {
   await createGallery();
   await createTags();
   await createComments();
+  await createFavPlace();
 }
 
 main()

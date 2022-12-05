@@ -51,7 +51,12 @@ class Tabloid {
     } catch (e) {
       throw e;
     }
-    return API_RESPONSE(res, 200, "Success Delete Tabloid ID: " + id);
+    return API_RESPONSE(
+      res,
+      200,
+      "Success Delete Tabloid ID: " + id,
+      "Success Delete Tabloid"
+    );
   }
 }
 

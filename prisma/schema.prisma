@@ -15,12 +15,21 @@ enum user_role {
   contributors
 }
 
+model FavPlaces {
+  id         Int      @id @default(autoincrement())
+  category   String   @db.VarChar(255)
+  location   String   @db.VarChar(255)
+  image_url  String   @db.VarChar(255)
+  created_at DateTime @default(now())
+  update_at  DateTime @updatedAt
+}
+
 model Posts {
   id            Int         @id @default(autoincrement())
   title         String      @db.VarChar(255)
   writer        String      @db.VarChar(255)
   editor        String      @db.VarChar(255)
-  redacture     Users       @relation(fields: [redacture_id], references: [id])
+  redacture     Users       @relation(fields: [redacture_id], references: [id], onDelete: Cascade)
   redacture_id  Int
   comments      Comments[]
   tags          Posts_Tags?
@@ -32,7 +41,7 @@ model Posts {
 
 model Posts_Tags {
   id      Int     @id @default(autoincrement())
-  post    Posts   @relation(fields: [post_id], references: [id])
+  post    Posts   @relation(fields: [post_id], references: [id], onDelete: Cascade)
   post_id Int     @unique
   tag1    String? @db.VarChar()
   tag2    String? @db.VarChar()
@@ -58,7 +67,7 @@ model Comments {
   name       String   @db.VarChar(255)
   email      String   @db.VarChar(255)
   comment    String   @db.Text
-  post       Posts    @relation(fields: [post_id], references: [id])
+  post       Posts    @relation(fields: [post_id], references: [id], onDelete: Cascade)
   post_id    Int
   created_at DateTime @default(now())
 }
