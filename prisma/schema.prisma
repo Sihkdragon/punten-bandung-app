@@ -15,6 +15,11 @@ enum user_role {
   contributors
 }
 
+enum post_type {
+  berita
+  ulasan
+}
+
 model FavPlaces {
   id         Int      @id @default(autoincrement())
   category   String   @db.VarChar(255)
@@ -27,6 +32,8 @@ model FavPlaces {
 model Posts {
   id            Int         @id @default(autoincrement())
   title         String      @db.VarChar(255)
+  slug          String      @db.VarChar(255)
+  type          post_type   @default(berita)
   writer        String      @db.VarChar(255)
   editor        String      @db.VarChar(255)
   redacture     Users       @relation(fields: [redacture_id], references: [id], onDelete: Cascade)
