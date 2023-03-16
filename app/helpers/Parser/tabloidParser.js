@@ -1,5 +1,7 @@
+const { slugify } = require("../String");
+
 const ParseBody = (reqbody, req) => {
-  const { title, writer, editor, body, redacture_id, tag1, tag2, tag3, tag4, tag5 } = reqbody;
+  const { title, writer, type, body, writer_id, tag1, tag2, tag3, tag4, tag5 } = reqbody;
   const thumbnail_url =
     req.protocol + "://" + req.get("host") + "/assets/img/post/" + req.file.filename;
 
@@ -7,9 +9,10 @@ const ParseBody = (reqbody, req) => {
   return {
     title,
     writer,
-    editor,
+    type,
+    slug: slugify(title),
     body,
-    redacture_id: +redacture_id,
+    writer_id: +writer_id,
     thumbnail_url,
     tags: {
       create: {
