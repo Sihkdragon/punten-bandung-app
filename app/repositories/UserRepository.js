@@ -3,10 +3,10 @@ const { PrismaClient } = require("@prisma/client");
 const User = new PrismaClient().users;
 
 class UserRepository {
-  async get(id = null) {
+  async get(searcher = null) {
     try {
-      if (!id) return await User.findMany();
-      return await User.findFirst({ where: { id } });
+      if (!searcher) return await User.findMany();
+      return await User.findFirst({ where: searcher });
     } catch (err) {
       throw err;
     }
@@ -36,3 +36,5 @@ class UserRepository {
     }
   }
 }
+
+module.exports = UserRepository;
