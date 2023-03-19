@@ -34,7 +34,6 @@ model Posts {
   title         String      @db.VarChar(255)
   slug          String      @db.VarChar(255)
   type          post_type   @default(berita)
-  editor        String      @db.VarChar(255)
   writer        Users       @relation(fields: [writer_id], references: [id], onDelete: Cascade)
   writer_id     Int
   comments      Comments[]

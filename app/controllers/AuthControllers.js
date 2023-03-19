@@ -7,12 +7,12 @@ class Auth {
 
     const { statusCode, payload, message } = await Login(username, password);
 
-    return API_RESPONSE(res, statusCode, payload, message);
+    return API_RESPONSE(res, payload, statusCode, message);
   }
   static async register(req, res) {
     const { statusCode, payload, message } = await Register(req.body);
 
-    return API_RESPONSE(res, statusCode, payload, message);
+    return API_RESPONSE(res, payload, statusCode, message);
     // return API_RESPONSE(res, 200, req.body);
   }
 }

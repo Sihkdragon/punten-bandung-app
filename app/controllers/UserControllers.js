@@ -5,9 +5,9 @@ class User {
   static async index(req, res) {
     const { id } = req.params;
     if (!id) {
-      return API_RESPONSE(res, 200, await UserService.getAllUser(), "Get All User Success");
+      return API_RESPONSE(res, await UserService.getAllUser(), 200, "Get All User Success");
     }
-    return API_RESPONSE(res, 200, await UserService.getUser(+id), "Get User Success");
+    return API_RESPONSE(res, await UserService.getUser(+id), 200, "Get User Success");
   }
 
   static async store(req, res) {
@@ -18,15 +18,15 @@ class User {
     const { id } = req.params;
     return API_RESPONSE(
       res,
-      200,
-      await UserService.UpdateUser(req.body, +id),
+
+      await UserService.UpdateUser(req.body, 200, +id),
       "Update User Success"
     );
   }
 
   static async delete(req, res) {
     const { id } = req.params;
-    return API_RESPONSE(res, 200, await UserService.DeleteUser(+id), "Delete User Success");
+    return API_RESPONSE(res, await UserService.DeleteUser(+id), 200, "Delete User Success");
   }
 }
 

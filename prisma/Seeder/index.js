@@ -10,10 +10,10 @@ const prisma = new PrismaClient();
 
 async function main() {
   await createUser();
-  await createTabloid();
+  // await createTabloid();
   await createGallery();
-  await createTags();
-  await createComments();
+  // await createTags();
+  // await createComments();
   await createFavPlace();
 }
 

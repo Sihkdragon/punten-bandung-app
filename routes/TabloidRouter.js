@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const API_urls = require("../app/resources/urls");
 const Tabloid = require("../app/controllers/TabloidControllers");
+const Post = require("../app/controllers/V2/PostController");
 const upload = require("../app/helpers/Parser/fileParser");
 const { isAuthenticated, AuthorizeAs } = require("../app/middlewares/AuthMiddleware");
 
@@ -12,8 +13,8 @@ const TabloidRouter = Router();
  * ====================================================================
  */
 
-TabloidRouter.get("/", Tabloid.index);
-TabloidRouter.get("/:id", Tabloid.index);
+TabloidRouter.get("/", Post.index);
+TabloidRouter.get("/:slug", Post.show);
 
 /**
  * @Authenticate
@@ -28,8 +29,8 @@ TabloidRouter.get("/:id", Tabloid.index);
  * ====================================================================
  */
 
-TabloidRouter.post("/", upload("tabloid").single("image"), Tabloid.store);
-TabloidRouter.patch("/:id", Tabloid.update);
-TabloidRouter.delete("/:id", Tabloid.delete);
+TabloidRouter.post("/", upload("tabloid").single("image"), Post.store);
+TabloidRouter.patch("/:id", Post.update);
+TabloidRouter.delete("/:id", Post.delete);
 
 module.exports = TabloidRouter;
