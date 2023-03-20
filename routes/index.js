@@ -5,7 +5,7 @@ const API_urls = require("../app/resources/urls");
 const AuthRouter = require("./AuthRouter");
 const CommentRouter = require("./CommentRouter");
 const UserRouter = require("./UserRouter");
-const V2Router = require("./V2");
+const V2Router = require("./v2");
 const router = Router();
 
 // ================================================

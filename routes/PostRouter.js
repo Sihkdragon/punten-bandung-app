@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const API_urls = require("../app/resources/urls");
 const Tabloid = require("../app/controllers/TabloidControllers");
-const Post = require("../app/controllers/V2/PostController");
+const Post = require("../app/controllers/v2/PostController");
 const upload = require("../app/helpers/Parser/fileParser");
 const { isAuthenticated, AuthorizeAs } = require("../app/middlewares/AuthMiddleware");
 

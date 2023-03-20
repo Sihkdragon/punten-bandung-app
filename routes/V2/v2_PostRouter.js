@@ -1,9 +1,9 @@
-const { Router } = require('express')
-const Post = require('../../app/controllers/V2/PostController')
-const upload = require('../../app/helpers/Parser/fileParser')
-const { isAuthenticated, AuthorizeAs } = require('../../app/middlewares/AuthMiddleware')
+const { Router } = require("express");
+const Post = require("../../app/controllers/v2/PostController");
+const upload = require("../../app/helpers/Parser/fileParser");
+const { isAuthenticated, AuthorizeAs } = require("../../app/middlewares/AuthMiddleware");
 
-const PostRouter = Router()
+const PostRouter = Router();
 
 /**
  * ====================================================================
@@ -11,8 +11,8 @@ const PostRouter = Router()
  * ====================================================================
  */
 
-PostRouter.get('/', Post.index)
-PostRouter.get('/:slug', Post.show)
+PostRouter.get("/", Post.index);
+PostRouter.get("/:slug", Post.show);
 
 /**
  * @Authenticate
@@ -27,8 +27,8 @@ PostRouter.get('/:slug', Post.show)
  * ====================================================================
  */
 
-PostRouter.post('/', upload('tabloid').single('image'), Post.store)
-PostRouter.patch('/:id', Post.update)
-PostRouter.delete('/:id', Post.delete)
+PostRouter.post("/", upload("tabloid").single("image"), Post.store);
+PostRouter.patch("/:id", Post.update);
+PostRouter.delete("/:id", Post.delete);
 
-module.exports = PostRouter
+module.exports = PostRouter;

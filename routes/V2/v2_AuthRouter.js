@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const Auth = require('../../app/controllers/V2/AuthController')
+const { Router } = require("express");
+const Auth = require("../../app/controllers/v2/AuthController");
 
-const AuthRouter = Router()
+const AuthRouter = Router();
 
 /**
  * ====================================================================
@@ -9,7 +9,7 @@ const AuthRouter = Router()
  * ====================================================================
  */
 
-AuthRouter.post('/login', Auth.login)
-AuthRouter.post('/register', Auth.register)
+AuthRouter.post("/login", Auth.login);
+AuthRouter.post("/register", Auth.register);
 
-module.exports = AuthRouter
+module.exports = AuthRouter;
