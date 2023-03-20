@@ -1,7 +1,7 @@
 const { Router } = require('express')
-const Gallery = require('../app/controllers/GalleryControllers')
-const upload = require('../app/helpers/Parser/fileParser')
-const { isAuthenticated, AuthorizeAs } = require('../app/middlewares/AuthMiddleware')
+const Gallery = require('../../app/controllers/v2/GalleryController')
+const upload = require('../../app/helpers/Parser/fileParser')
+const { isAuthenticated, AuthorizeAs } = require('../../app/middlewares/AuthMiddleware')
 
 const GalleryRouter = Router()
 
@@ -17,7 +17,7 @@ GalleryRouter.get('/', Gallery.index)
  * @Authenticate
  */
 
-GalleryRouter.use(isAuthenticated, AuthorizeAs['admin'])
+// GalleryRouter.use(isAuthenticated, AuthorizeAs['admin'])
 
 /**
  * ====================================================================

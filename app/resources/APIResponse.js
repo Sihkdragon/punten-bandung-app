@@ -19,7 +19,7 @@ function API_RESPONSE(res, data, statusCode = 200, message = undefined, type = n
   return res.status(404).json({
     statusCode: 404,
     message: type ? `Data ${type} tidak ditemukan` : 'Data tidak ditemukan',
-    payload: data !== null && data.length < 1 ? [] : null
+    payload: data !== null && data !== undefined && data.length < 1 ? [] : null
   })
 }
 

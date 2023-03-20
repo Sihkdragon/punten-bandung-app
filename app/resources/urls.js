@@ -1,5 +1,5 @@
 const API_urls = {
-  tabloid: {
+  post: {
     url: '/post',
     get url_withID() {
       return this.url + '/:id'

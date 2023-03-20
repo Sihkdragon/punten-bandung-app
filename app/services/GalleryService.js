@@ -1,31 +1,48 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require('@prisma/client')
+const GalleryRepository = require('../repositories/GalleryRepository')
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
-const getGallery = async () => {
-  try {
-    return await prisma.gallery.findMany({
-      take: 16,
-      orderBy: {
-        update_at: "desc",
-      },
-    });
-  } catch (e) {
-    throw e;
+class GalleryService {
+  constructor() {
+    this.Gallery = new GalleryRepository()
   }
-};
 
-const PostImage = async (data) => {
-  try {
-    await prisma.gallery.create({
-      data,
-    });
-  } catch (e) {
-    throw e;
+  async getAllGallery() {
+    try {
+      return await this.Gallery.get()
+    } catch (err) {
+      throw err
+    }
   }
-};
+  async getGallery(searcher) {
+    try {
+      return await this.Gallery.get(searcher)
+    } catch (err) {
+      throw err
+    }
+  }
+  async saveGallery(data) {
+    try {
+      return this.Gallery.create(data)
+    } catch (err) {
+      throw err
+    }
+  }
+  async editGallery(id, data) {
+    try {
+      return await this.Gallery.update(+id, data)
+    } catch (e) {
+      throw e
+    }
+  }
+  async deleteGallery(id) {
+    try {
+      return await this.Gallery.delete(id)
+    } catch (err) {
+      throw err
+    }
+  }
+}
 
-module.exports = {
-  getGallery,
-  PostImage,
-};
+module.exports = GalleryService
