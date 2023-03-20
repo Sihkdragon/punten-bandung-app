@@ -1,8 +1,8 @@
-const { Router } = require('express')
-const Comment = require('../../app/controllers/CommentControllers')
-const { isAuthenticated, AuthorizeAs } = require('../../app/middlewares/AuthMiddleware')
+const { Router } = require("express");
+const Comment = require("../../app/controllers/V2/CommentController");
+const { isAuthenticated, AuthorizeAs } = require("../../app/middlewares/AuthMiddleware");
 
-const CommentRouter = Router()
+const CommentRouter = Router();
 
 /**
  * ====================================================================
@@ -10,15 +10,15 @@ const CommentRouter = Router()
  * ====================================================================
  */
 
-CommentRouter.get('/:postID', Comment.index)
-CommentRouter.get('/:postID/:id', Comment.index)
-CommentRouter.post('/:postID', Comment.store)
+CommentRouter.get("/:postID", Comment.index);
+CommentRouter.get("/:postID/:id", Comment.index);
+CommentRouter.post("/:postID", Comment.store);
 
 /**
  * @Authenticate
  */
 
-CommentRouter.use(isAuthenticated, AuthorizeAs['admin'])
+CommentRouter.use(isAuthenticated, AuthorizeAs["admin"]);
 
 /**
  * ====================================================================
@@ -27,6 +27,6 @@ CommentRouter.use(isAuthenticated, AuthorizeAs['admin'])
  * ====================================================================
  */
 
-CommentRouter.delete('/:id', Comment.delete)
+CommentRouter.delete("/:id", Comment.delete);
 
-module.exports = CommentRouter
+module.exports = CommentRouter;

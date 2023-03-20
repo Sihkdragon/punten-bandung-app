@@ -24,9 +24,7 @@ class CommentService {
   }
   async saveComment(data) {
     try {
-      return this.Comment.create({
-        data,
-      });
+      return this.Comment.create(data);
     } catch (err) {
       throw err;
     }

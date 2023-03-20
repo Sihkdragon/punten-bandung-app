@@ -20,3 +20,4 @@ benchmarks/graphs
 prisma/migrations
 
 public/assets/img/post/*
+public/assets/img/gallery/*

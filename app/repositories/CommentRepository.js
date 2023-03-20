@@ -13,7 +13,7 @@ class CommentRepository {
     }
   }
 
-  async create() {
+  async create(data) {
     try {
       return await Comment.create({ data });
     } catch (err) {
