@@ -1,11 +1,11 @@
-const { Router } = require("express");
-const V2Router = require("./v2");
-const router = Router();
+const { Router } = require('express')
+const V2Router = require('./new')
+const router = Router()
 
 // ================================================
 // |           V2 URL                |
 // ================================================
-router.use("/v2", V2Router);
+router.use('/v2', V2Router)
 // // ================================================
 // // |           Autehentication URL                |
 // // ================================================
@@ -31,4 +31,4 @@ router.use("/v2", V2Router);
 // // ================================================
 // router.use(API_urls.users.url, UserRouter);
 
-module.exports = router;
+module.exports = router
